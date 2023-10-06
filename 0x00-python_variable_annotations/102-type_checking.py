@@ -5,6 +5,7 @@ mypy validation
 
 from typing import List, Tuple
 
+
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
     '''
     Function update to validate using mypy
@@ -14,6 +15,7 @@ def zoom_array(lst: Tuple, factor: int = 2) -> List:
         for i in range(factor)
     ]
     return zoomed_in
+
 
 array = (12, 72, 91)  # use a tuple instead of a list
 
