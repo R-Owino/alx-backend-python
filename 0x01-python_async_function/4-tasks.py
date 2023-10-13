@@ -19,4 +19,4 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
                                        for _ in range(n))]):
         completed_tasks = await res
         results.append(completed_tasks)
-        return results
+    return results
