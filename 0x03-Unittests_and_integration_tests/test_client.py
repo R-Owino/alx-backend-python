@@ -6,6 +6,7 @@ Unittests for client.GithubOrgClient class
 import unittest
 from unittest.mock import patch, PropertyMock, Mock
 from parameterized import parameterized, param, parameterized_class
+import client
 from fixtures import TEST_PAYLOAD
 
 GithubOrgClient = __import__('client').GithubOrgClient
@@ -81,6 +82,16 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
                 return Mock(ok=True, json=lambda: cls.repos_payload)
 
         cls.mock_get.side_effect = side_effect
+
+    def test_public_repos(self):
+        """ Test GithubOrgClient.public_repos without license """
+        self.assertEqual(GithubOrgClient('google').public_repos(),
+                         self.expected_repos,)
+
+    def test_public_repos_with_license(self):
+        """ Test GithubOrgClient.public_repos with license """
+        self.assertEqual(GithubOrgClient('google').public_repos('apache-2.0'),
+                         self.apache2_repos,)
 
     @classmethod
     def tearDownClass(cls):
